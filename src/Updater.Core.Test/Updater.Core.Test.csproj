@@ -22,4 +22,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Updater.Core\Updater.Core.csproj" />
+  </ItemGroup>
 </Project>
