@@ -2,7 +2,8 @@
 
 namespace Updater.Core
 {
-    public class ProfileBuilderOptions : IProfileBuilderOptions
+    internal class ProfileBuilderConfiguration : IProfileBuilderOptions,
+        IProfileServices
     {
         private HttpClient? _http;
 
@@ -15,7 +16,7 @@ namespace Updater.Core
             return this;
         }
 
-        internal Task<string> HttpGet(string url) {
+        public Task<string> HttpGet(string url) {
             _httpTasks.Add(
                 Http.GetStringAsync(url));
             return _httpTasks.Last();
@@ -26,6 +27,11 @@ namespace Updater.Core
 
         internal async Task AwaitAllServiceTasks() {
            await Task.WhenAll(_httpTasks.ToArray());
+        }
+
+        public async Task AwaitSetupTasks()
+        {
+            await Task.WhenAll(_httpTasks.ToArray());
         }
     }
 }

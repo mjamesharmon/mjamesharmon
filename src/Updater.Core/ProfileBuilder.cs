@@ -5,25 +5,23 @@ namespace Updater.Core
 {
 	public class ProfileBuilder
 	{
-		private List<Action<StringBuilder>> _buildPlan =
-			new List<Action<StringBuilder>>();
-
-		private List<Action> _serviceActions =
-			new List<Action>();
-
-		private ProfileBuilderOptions _options = new ProfileBuilderOptions();
+		private List<Action<StringBuilder>> _buildPlan = new();
+		private List<Action> _serviceActions = new();
+		private IProfileServices _services;
 
 		internal ProfileBuilder(
 			Action<IProfileBuilderOptions>? optionsConfigurator = default) {
 
+			ProfileBuilderConfiguration options = new();
 			optionsConfigurator ??= (o) => { };
-			optionsConfigurator(_options);
+			optionsConfigurator(options);
+			_services = options;
 		}
 
-		private ProfileBuilder(ProfileBuilderOptions options,
+		private ProfileBuilder(IProfileServices services,
 			IEnumerable<Action<StringBuilder>> plan) {
 			_buildPlan = new List<Action<StringBuilder>>(plan);
-			_options = options;
+			_services = services;
 		}
 
 		public ProfileBuilder AddHeader(string title,
@@ -35,7 +33,7 @@ namespace Updater.Core
 				builder.AppendLine(PlainTextOrSkip(description));
 			});
 
-			return new ProfileBuilder(_options,_buildPlan);
+			return new ProfileBuilder(_services,_buildPlan);
 		}
 
 		public ProfileBuilder AddRawSection(string raw) {
@@ -44,7 +42,7 @@ namespace Updater.Core
 			{
 				builder.AppendLine(raw);
 			});
-            return new ProfileBuilder(_options, _buildPlan);
+            return new ProfileBuilder(_services, _buildPlan);
         }
 
         public ProfileBuilder AddSection(string title,
@@ -57,17 +55,17 @@ namespace Updater.Core
                 builder.AppendLine(PlainTextOrSkip(description));
             });
 
-            return new ProfileBuilder(_options,_buildPlan);
+            return new ProfileBuilder(_services,_buildPlan);
         }
 
 		public Profile Build() {
-			_options.AwaitAllServiceTasks().
+			_services.AwaitSetupTasks().
 				Wait();
-
+			
 			return new Profile(ExecuteBuildPlan()); 
 		 }
 
-		internal ProfileBuilderOptions Services => _options;
+		internal IProfileServices Services => _services;
 
 
 		private StringBuilder ExecuteBuildPlan() =>

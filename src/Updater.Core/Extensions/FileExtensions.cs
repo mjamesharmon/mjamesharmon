@@ -7,7 +7,8 @@ namespace Updater.Core.Extensions
 			string path, CancellationToken cancellationToken = default)
 		
 		{
-			await File.WriteAllTextAsync(path, builder.BuildString(),
+			string file = Path.Combine(path ?? string.Empty, "README.md");
+			await File.WriteAllTextAsync(file, builder.BuildString(),
 				cancellationToken);
 		}
 
