@@ -24,6 +24,15 @@ namespace Updater.Core
 			_services = services;
 		}
 
+		public ProfileBuilder AddImage(string url, string text) {
+
+			_buildPlan.Add((builder) =>
+			{
+				builder.AppendLine($"![{text}]({url})");
+			});
+			return new ProfileBuilder(_services, _buildPlan);
+		}
+
 		public ProfileBuilder AddHeader(string title,
 			string description="") {
 
