@@ -34,4 +34,7 @@ jobs:
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add .
           git commit -am "Scheduled README Update"
-          git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
+      - name: Push changes
+        uses: ad-m/github-push-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
