@@ -1,0 +1,35 @@
+---
+name: README Update
+on:
+  schedule:
+     - cron: '10 0 * * *'
+  push:
+    branches:
+      - main
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup .Net
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: |
+          cd src
+          dotnet restore
+      - name: Build and Run
+        run: >
+          cd src
+          dotnet build -c Release --no-restore
+          dotnet run -c Release --project Updater.Application $GITHUB_WORKSPACE
+      - name: Deploy
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add README.md
+          git commit -am “Scheduled “README update”
+          git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
