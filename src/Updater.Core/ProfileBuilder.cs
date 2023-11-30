@@ -6,7 +6,6 @@ namespace Updater.Core
 	public class ProfileBuilder
 	{
 		private List<Action<StringBuilder>> _buildPlan = new();
-		private List<Action> _serviceActions = new();
 		private IProfileServices _services;
 
 		internal ProfileBuilder(
