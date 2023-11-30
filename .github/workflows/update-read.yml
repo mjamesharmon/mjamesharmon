@@ -24,7 +24,9 @@ jobs:
       - name: Build and Run
         run: >
           cd src
+          
           dotnet build -c Release --no-restore
+          
           dotnet run -c Release --project Updater.Application $GITHUB_WORKSPACE
       - name: Deploy
         run: |
