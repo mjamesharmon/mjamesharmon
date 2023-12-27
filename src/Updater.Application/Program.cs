@@ -13,7 +13,9 @@ await Profile.Configure(options => options.
      "keep" +
      " up with the Wham Watchdog report to see when " +
      "'Last Christmas' tops the charts :)").
-    RemoveAfter(ProfileSettings.ChristmasContentStart,profile => profile.
+    ScheduleFor(ProfileSettings.ChristmasContentStart,
+    ProfileSettings.ChristmasContentStart.AddDays(45),
+    profile => profile.
         AddSection("Countdown Calendar").
         AddSectionFromUrl(ProfileSettings.JulekalenderPath).
         AddSection("Wham Watchdog report").

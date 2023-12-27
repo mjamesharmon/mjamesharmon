@@ -29,6 +29,24 @@ namespace Updater.Core.Extensions
 				DateTime.MinValue, endDate) ?? builder;
 		}
 
+		public static ProfileBuilder RepeatYearly(this ProfileBuilder builder,
+			DateTime startDate, DateTime endDate,
+			Func<ProfileBuilder,ProfileBuilder> configuration)
+		{
+			TimeSpan duration = endDate - startDate;
+
+			return builder;
+		}
+
+		public static ProfileBuilder ScheduleFor(this ProfileBuilder builder,
+			DateTime startDate, DateTime endDate,
+			Func<ProfileBuilder,ProfileBuilder> configuration)
+		{
+			return builder.Services.
+				Schedule(() => configuration(builder), startDate, endDate) ??
+				builder;
+		}
+
         public static IProfileBuilderOptions EnableScheduling(
         this IProfileBuilderOptions options, DateTime? now = null)
         {

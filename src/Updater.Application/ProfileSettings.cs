@@ -23,7 +23,7 @@ namespace Updater.Application
              $"{GitHubServicesPath}wham-watchdog/rankings.md";
 
         public static DateTime ChristmasContentStart =>
-            new DateTime(2023, 12, 25, 0, 0, 0, DateTimeKind.Utc);
+            new DateTime(2023, 11, 25, 0, 0, 0, DateTimeKind.Utc);
 
     }
 }

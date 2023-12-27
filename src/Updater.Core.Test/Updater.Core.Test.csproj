@@ -25,4 +25,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Updater.Core\Updater.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
 </Project>
