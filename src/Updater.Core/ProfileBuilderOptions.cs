@@ -25,10 +25,6 @@ namespace Updater.Core
         private HttpClient Http => _http ??
             throw new InvalidOperationException();
 
-        internal async Task AwaitAllServiceTasks() {
-           await Task.WhenAll(_httpTasks.ToArray());
-        }
-
         public async Task AwaitSetupTasks()
         {
             await Task.WhenAll(_httpTasks.ToArray());
