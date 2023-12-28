@@ -3,8 +3,9 @@ using Updater.Core;
 using Updater.Core.Extensions;
 
 
-await Profile.Configure(options =>
-   options.UseHttp()).
+await Profile.Configure(options => options.
+   UseHttp().
+   EnableScheduling()).
    AddImage(ProfileSettings.HeaderImage, ProfileSettings.HeaderImageAlt).
    AddHeader("Welcome", "I started coding when I was around 10 years old " +
      "and I'm still not bored with it. For December, check back to follow" +
@@ -12,9 +13,12 @@ await Profile.Configure(options =>
      "keep" +
      " up with the Wham Watchdog report to see when " +
      "'Last Christmas' tops the charts :)").
-   AddSection("Countdown Calendar").
-   AddSectionFromUrl(ProfileSettings.JulekalenderPath).
-   AddSection("Wham Watchdog report").
-   AddSectionFromUrl(ProfileSettings.WhamWatchdogPath).
+    ScheduleFor(ProfileSettings.ChristmasContentStart,
+    ProfileSettings.ChristmasContentStart.AddDays(45),
+    profile => profile.
+        AddSection("Countdown Calendar").
+        AddSectionFromUrl(ProfileSettings.JulekalenderPath).
+        AddSection("Wham Watchdog report").
+        AddSectionFromUrl(ProfileSettings.WhamWatchdogPath)).
    PublishToFileAsync(args[0]);
 
