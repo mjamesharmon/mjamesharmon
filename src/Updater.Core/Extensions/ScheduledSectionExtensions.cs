@@ -31,11 +31,19 @@ namespace Updater.Core.Extensions
 
 		public static ProfileBuilder RepeatYearly(this ProfileBuilder builder,
 			DateTime startDate, DateTime endDate,
-			Func<ProfileBuilder,ProfileBuilder> configuration)
+			Func<ProfileBuilder, ProfileBuilder> configuration)
 		{
-			TimeSpan duration = endDate - startDate;
+			DateTime currentTime = _currentTimeUTC ??
+				throw new InvalidOperationException(NotConfiguredException);
 
-			return builder;
+			while (endDate <= currentTime) {
+				startDate = startDate.AddYears(1);
+				endDate = endDate.AddYears(1);
+			}
+
+			return builder.Services.
+				Schedule(() => configuration(builder), startDate, endDate) ??
+				builder;
 		}
 
 		public static ProfileBuilder ScheduleFor(this ProfileBuilder builder,

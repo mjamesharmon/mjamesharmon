@@ -53,6 +53,21 @@ namespace Updater.Core.Test.Extensions
         }
 
         [Theory]
+        [ClassData(typeof(RepeatYearlyTestData))]
+        public void TestRepeatYearly_Valid_Ok(DateTime now, DateTime start,
+            DateTime end, bool isValid)
+        {
+
+            var profile = Profile.Configure(options => options.
+                EnableScheduling(now)).
+                RepeatYearly(start, end, p => p.AddSection(SectionData)).
+                Build();
+
+            Assert.NotNull(profile);
+            Assert.Equal(isValid, profile.Contains(SectionData));
+        }
+
+        [Theory]
         [ClassData(typeof(IncludeAfterTestData))]
         public void TestIncludeAfter_Valid_Ok(DateTime now, DateTime start,
             bool isValid) {
