@@ -13,12 +13,15 @@ await Profile.Configure(options => options.
      "keep" +
      " up with the Wham Watchdog report to see when " +
      "'Last Christmas' tops the charts :)").
-    ScheduleFor(ProfileSettings.ChristmasContentStart,
-    ProfileSettings.ChristmasContentStart.AddDays(45),
-    profile => profile.
+     RepeatYearly(ProfileSettings.ChristmasContentStart,
+       ProfileSettings.ChristmasContentEnd, profile => profile.
         AddSection("Countdown Calendar").
         AddSectionFromUrl(ProfileSettings.JulekalenderPath).
         AddSection("Wham Watchdog report").
         AddSectionFromUrl(ProfileSettings.WhamWatchdogPath)).
+
+    RepeatYearly(ProfileSettings.NewYearsStart, ProfileSettings.NewYearsEnd,
+        profile => profile.AddSection(
+            $"🎊 HAPPY NEW YEAR 🎊 {DateTime.UtcNow.Year} 🥳")).
    PublishToFileAsync(args[0]);
 

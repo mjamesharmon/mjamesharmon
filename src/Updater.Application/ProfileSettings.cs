@@ -25,5 +25,14 @@ namespace Updater.Application
         public static DateTime ChristmasContentStart =>
             new DateTime(2023, 11, 25, 0, 0, 0, DateTimeKind.Utc);
 
+        public static DateTime ChristmasContentEnd =>
+            new DateTime(2023, 12, 31, 0, 0, 0, DateTimeKind.Utc);
+
+        public static DateTime NewYearsStart =>
+            new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        public static DateTime NewYearsEnd =>
+            NewYearsStart.AddDays(6);
+
     }
 }
