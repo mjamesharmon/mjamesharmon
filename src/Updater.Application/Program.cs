@@ -1,12 +1,16 @@
 ﻿using Updater.Application;
 using Updater.Core;
 using Updater.Core.Extensions;
-
+using Microsoft.Extensions.Configuration;
+using Updater.Core.SectionProviders;
 
 await Profile.Configure(options => options.
    UseHttp().
-   EnableScheduling()).
+   EnableScheduling().
+   EnableConfiguration(config => config.
+    AddEnvironmentVariables())).
    AddImage(ProfileSettings.HeaderImage, ProfileSettings.HeaderImageAlt).
+   AddLatestFromDevTo(2).
      RepeatYearly(ProfileSettings.ChristmasContentStart,
        ProfileSettings.ChristmasContentEnd, profile => profile.
         AddSection("Countdown Calendar").

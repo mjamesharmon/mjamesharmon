@@ -22,6 +22,21 @@ namespace Updater.Core
             return _httpTasks.Last();
         }
 
+        public Task<string> HttpSend(HttpRequestMessage httpRequest)
+        {
+            _httpTasks.Add(
+                ReadStringAsync(httpRequest));
+            return _httpTasks.Last();
+
+        }
+
+        private async Task<string> ReadStringAsync(HttpRequestMessage message)
+        {
+            var response = await Http.SendAsync(message);
+            return await response.Content.ReadAsStringAsync(); 
+        }
+          
+
         private HttpClient Http => _http ??
             throw new InvalidOperationException();
 

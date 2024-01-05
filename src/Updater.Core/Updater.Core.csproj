@@ -8,8 +8,17 @@
 
   <ItemGroup>
     <None Remove="Extensions\" />
+    <None Remove="SectionProviders\" />
+    <None Remove="SectionProviders\DevTo\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="SectionProviders\" />
+    <Folder Include="SectionProviders\DevTo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
   </ItemGroup>
 </Project>

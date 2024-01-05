@@ -5,6 +5,8 @@ namespace Updater.Core
     {
         Task<string> HttpGet(string url);
 
+        Task<string> HttpSend(HttpRequestMessage request);
+
         Task AwaitSetupTasks();
     }      
 }
