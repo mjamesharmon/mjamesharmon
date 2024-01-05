@@ -22,6 +22,8 @@ jobs:
           cd src
           dotnet restore
       - name: Build and Run
+        env:
+          BlogListingOptions__ApiKey: ${{ secrets.DEV_TO_API_KEY }}
         run: >
           cd src
           
