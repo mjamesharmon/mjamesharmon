@@ -30,17 +30,11 @@ namespace Updater.Core.SectionProviders
 				ToString();
 		}
 
-		private static string ListTags(this Article article)
-		{
-			return string.Join(' ',article.Tags.
-				Select(t => $"#{t}"));
-		}
-
+		
 		private static StringBuilder AppendArticle(this StringBuilder builder,
 			Article article)
 		{
 			builder.AppendLine($"### [{article.Title}]({article.Url})");
-			builder.AppendLine($"\n*{article.ListTags()}*");
 			builder.AppendLine($"\nPublished {article.PublishedAt.AsDaysAgo()}");
 			builder.Append($"\n  💬 {article.CommentCount} &nbsp;&nbsp;");
 			builder.Append($" 👍🏻 {article.Likes} &nbsp; &nbsp;");
