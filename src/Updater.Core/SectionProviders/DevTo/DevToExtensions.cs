@@ -50,7 +50,7 @@ namespace Updater.Core.SectionProviders
 
 			if (days == 0) return "Today";
 			else if (days == 1) return "Yesterday";
-			else return $"{interval} Days Ago";
+			else return $"{days} Days Ago";
 		}
 		
 		private static IEnumerable<Article> AsArticles(this string json)
