@@ -2,11 +2,9 @@
 ## Latest Topics
 ### [Securing Sensitive Information in Polyglot Notebooks](https://dev.to/mjamesharmon/securing-sensitive-information-in-polyglot-notebooks-2jh0)
 
-Published Yesterday
+Published 2.00:42:21.5646744 Days Ago
 
   💬 0 &nbsp;&nbsp; 👍🏻 0 &nbsp; &nbsp; ⏱️ 3
 
 ---
-
-## 🎊 HAPPY NEW YEAR 🎊 2024 🥳
 
