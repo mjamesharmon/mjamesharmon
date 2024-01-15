@@ -22,6 +22,12 @@ namespace Updater.Application
         public const string WhamWatchdogPath =
              $"{GitHubServicesPath}wham-watchdog/rankings.md";
 
+        public const string CalendarLight =
+            $"{GitHubServicesPath}nonbinary-binary-calendar/calendar-light.svg";
+
+        public const string CalendarDark =
+           $"{GitHubServicesPath}nonbinary-binary-calendar/calendar-dark.svg";
+
         public static DateTime ChristmasContentStart =>
             new DateTime(2023, 11, 25, 0, 0, 0, DateTimeKind.Utc);
 
