@@ -47,10 +47,12 @@ namespace Updater.Core.SectionProviders
 		{
 			TimeSpan interval = DateTime.UtcNow - date;
 			int days = (int)interval.TotalDays;
+			int weeks = days / 7;
 
 			if (days == 0) return "Today";
 			else if (days == 1) return "Yesterday";
-			else return $"{days} Days Ago";
+			else if (days < 14) return $"{days} Days Ago";
+			else return $"{weeks} Weeks Ago";
 		}
 		
 		private static IEnumerable<Article> AsArticles(this string json)
