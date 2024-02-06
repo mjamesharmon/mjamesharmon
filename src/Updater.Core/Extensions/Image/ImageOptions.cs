@@ -48,7 +48,7 @@ namespace Updater.Core.Extensions
 				v => "<source media=\"(prefers-color-scheme: dark)\""
 				+ $"srcset=\"{v}\" >");
             image.AppendLineOrOmit(_light,
-	            v => "<source media=\"(prefers-color-scheme: dark)\""
+	            v => "<source media=\"(prefers-color-scheme: light)\""
                 + $"srcset=\"{v}\" >");
 			image.AppendLine(
 				$"<img alt=\"{_alt_text}\" src=\"{_all_img}\" >");
