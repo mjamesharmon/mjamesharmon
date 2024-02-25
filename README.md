@@ -19,7 +19,7 @@ Published 7 Weeks Ago
 <picture>
 <source media="(prefers-color-scheme: dark)"srcset="https://mjamesharmon.github.io/nonbinary-binary-calendar/calendar-dark.svg" >
 <source media="(prefers-color-scheme: light)"srcset="https://mjamesharmon.github.io/nonbinary-binary-calendar/calendar-light.svg" >
-<img alt="02/24/2024" src="" >
+<img alt="02/25/2024" src="" >
 </picture>
 
 
