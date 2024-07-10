@@ -14,14 +14,6 @@ await Profile.Configure(options => options.
    AddImage(ProfileSettings.HeaderImage, ProfileSettings.HeaderImageAlt).
    AddLatestFromDevTo(4).
 
-   // standard content section
-   RepeatYearly(ProfileSettings.NewYearsEnd,
-    ProfileSettings.ChristmasContentStart.AddYears(1), profile => profile.
-        AddImage(options => options.
-             Dark(ProfileSettings.CalendarDark).
-             Light(ProfileSettings.CalendarLight).
-             AlternateText(DateTime.UtcNow.ToShortDateString()))).
-
    // christmas content section
    RepeatYearly(ProfileSettings.ChristmasContentStart,
        ProfileSettings.ChristmasContentEnd, profile => profile.
