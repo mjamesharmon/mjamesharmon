@@ -24,7 +24,7 @@ namespace Updater.Core.SectionProviders
         private Task<string> _AddContentRequest()
         {
 			HttpRequestMessage httpRequest = new();
-			httpRequest.RequestUri = new Uri(_endpoint);
+			httpRequest.RequestUri = new Uri($"{_endpoint}?page=1&per_page={_options?.MaxPosts ?? 6}");
 			httpRequest.Headers.
 				Accept.Add(new MediaTypeWithQualityHeaderValue(_acceptHeader));
 			httpRequest.Headers.Add("api-key", Options.ApiKey);
