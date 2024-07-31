@@ -12,7 +12,7 @@ await Profile.Configure(options => options.
 
    // primary content
    AddImage(ProfileSettings.HeaderImage, ProfileSettings.HeaderImageAlt).
-   AddLatestFromDevTo(4).
+   AddLatestFromDevTo(2).
 
    // christmas content section
    RepeatYearly(ProfileSettings.ChristmasContentStart,
