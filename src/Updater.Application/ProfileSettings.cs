@@ -40,5 +40,7 @@ namespace Updater.Application
         public static DateTime NewYearsEnd =>
             NewYearsStart.AddDays(6);
 
+        public const string DevToProfile = "https://dev.to/mjamesharmon";
+
     }
 }

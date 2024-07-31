@@ -10,24 +10,32 @@ namespace Updater.Core.SectionProviders
 	public static class DevToExtensions
 	{
 		public static ProfileBuilder AddLatestFromDevTo(this ProfileBuilder builder,
-			int maxPosts)
+			int maxPosts, string? profileUrl = null)
 		{
 			BlogListingOptions options = new();
 			builder.Services.Configuration().
 				GetSection(nameof(BlogListingOptions)).
 				Bind(options);
 			options.MaxPosts = maxPosts;
+			options.ProfileUrl = profileUrl ?? string.Empty;
 			return builder.AddSectionProvider(
 				new BlogListingProvider(builder.Services, options));
 		}
 
-		public static string AsMarkdownContent(this string json)
+		public static StringBuilder AsMarkdownContent(this string json)
 		{
 			return json.AsArticles().
 				Where(a=>a.IsPublished == true).
 				Aggregate(new StringBuilder(), (content, article) =>
-					content.AppendArticle(article)).
-				ToString();
+					content.AppendArticle(article));
+				
+		}
+
+		public static StringBuilder AppendProfileLink(this StringBuilder builder, string? profile) {
+
+			return string.IsNullOrWhiteSpace(profile) ? 
+			 builder :
+			 builder.AppendLine($"### [More...]({profile})");
 		}
 
 		

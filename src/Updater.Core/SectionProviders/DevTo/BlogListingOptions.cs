@@ -6,6 +6,8 @@ namespace Updater.Core.SectionProviders
 		public int MaxPosts { get; set; } = 2;
 
 		public string ApiKey { get; set; } = string.Empty;
+
+		public string ProfileUrl {get;set;} = string.Empty;
 	}
 }
 

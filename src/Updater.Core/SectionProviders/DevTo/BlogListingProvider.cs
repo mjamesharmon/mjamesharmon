@@ -10,6 +10,7 @@ namespace Updater.Core.SectionProviders
 
         private IProfileServices _services;
 		private BlogListingOptions? _options;
+
 		private Task<string> _loadContent;
 
 		public BlogListingProvider(IProfileServices services,
@@ -40,7 +41,9 @@ namespace Updater.Core.SectionProviders
 			throw new NullReferenceException("Required options missing");
 
 		public string Content => _loadContent.Result.
-			AsMarkdownContent();
+			AsMarkdownContent().
+			AppendProfileLink(_options?.ProfileUrl).
+			ToString();
 
         public string Title => "Latest Topics";
     }
