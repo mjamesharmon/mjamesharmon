@@ -9,6 +9,12 @@ namespace Updater.Core.SectionProviders
 {
 	public static class DevToExtensions
 	{
+		private delegate bool TimeAgoCondition(TimeSpan interval);
+        private delegate string TimeAgoFormatter(TimeSpan interval);
+		private readonly record struct TimeAgoStrategy(TimeAgoCondition Condition, 
+		  TimeAgoFormatter Formatter);
+
+
 		public static ProfileBuilder AddLatestFromDevTo(this ProfileBuilder builder,
 			int maxPosts, string? profileUrl = null)
 		{
@@ -38,12 +44,25 @@ namespace Updater.Core.SectionProviders
 			 builder.AppendLine($"### [More...]({profile})");
 		}
 
-		
+	
+		public static string ToTimeAgoString(this DateTime date) {
+
+			TimeSpan interval = DateTime.UtcNow - date;
+			string result = date.ToShortDateString();
+			
+			foreach( var strategy in Strategies) {
+				result = strategy.Condition(interval) ? 
+				  strategy.Formatter(interval) :
+				  result;
+			}
+			return result;
+		}
+
 		private static StringBuilder AppendArticle(this StringBuilder builder,
 			Article article)
 		{
 			builder.AppendLine($"### [{article.Title}]({article.Url})");
-			builder.AppendLine($"\nPublished {article.PublishedAt.AsDaysAgo()}");
+			builder.AppendLine($"\nPublished {article.PublishedAt.ToTimeAgoString()}");
 			builder.Append($"\n  💬 {article.CommentCount} &nbsp;&nbsp;");
 			builder.Append($" 👍🏻 {article.Likes} &nbsp; &nbsp;");
 			builder.AppendLine($" ⏱️ {article.ReadingTime}");
@@ -51,19 +70,15 @@ namespace Updater.Core.SectionProviders
             return builder;
 		}
 
-		private static string AsDaysAgo(this DateTime date)
-		{
-			TimeSpan interval = DateTime.UtcNow - date;
-			int days = (int)interval.TotalDays;
-			int weeks = days / 7;
-			int months = weeks / 4;
-
-			if (days == 0) return "Today";
-			else if (days == 1) return "Yesterday";
-			else if (days < 14) return $"{days} Days Ago";
-			else if (days < 62) return $"{weeks} Weeks Ago";
-			else return $"{months} Months Ago";
-		}
+       private static IReadOnlyList<TimeAgoStrategy> Strategies =>
+        new List<TimeAgoStrategy>
+        {
+            new TimeAgoStrategy(interval => interval.TotalDays < 1, interval => "Today"),
+            new TimeAgoStrategy(interval => interval.TotalDays >= 1 && interval.TotalDays < 2, interval => "Yesterday"),
+            new TimeAgoStrategy(interval => interval.TotalDays >= 2 && interval.TotalDays < 14, interval => $"{(int)interval.TotalDays} Days Ago"),
+            new TimeAgoStrategy(interval => interval.TotalDays >= 14 && interval.TotalDays < 62, interval => $"{(int)(interval.TotalDays / 7)} Weeks Ago"),
+            new TimeAgoStrategy(interval => interval.TotalDays >= 62, interval => $"{(int)(interval.TotalDays / 30)} Months Ago")
+        };
 		
 		private static IEnumerable<Article> AsArticles(this string json)
 			=> JsonSerializer.Deserialize<Article[]>(json) ??
