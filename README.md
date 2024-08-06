@@ -2,7 +2,7 @@
 ## Latest Topics
 ### [Creating a Zelda Chat Assistant using Semantic Kernel](https://dev.to/mjamesharmon/creating-a-zelda-chat-assistant-using-semantic-kernel-47ii)
 
-Published 9 Days Ago
+Published 10 Days Ago
 
   💬 0 &nbsp;&nbsp; 👍🏻 0 &nbsp; &nbsp; ⏱️ 5
 
