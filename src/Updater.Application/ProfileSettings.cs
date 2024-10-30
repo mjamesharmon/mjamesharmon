@@ -29,7 +29,7 @@ namespace Updater.Application
            $"{GitHubServicesPath}nonbinary-binary-calendar/calendar-dark.svg";
 
         public static DateTime ChristmasContentStart =>
-            new DateTime(2023, 11, 25, 0, 0, 0, DateTimeKind.Utc);
+            new DateTime(2023, 11, 3, 19, 59, 0, DateTimeKind.Utc);
 
         public static DateTime ChristmasContentEnd =>
             new DateTime(2023, 12, 31, 0, 0, 0, DateTimeKind.Utc);
