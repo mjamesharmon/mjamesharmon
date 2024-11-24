@@ -17,8 +17,6 @@ await Profile.Configure(options => options.
    // christmas content section
    RepeatYearly(ProfileSettings.ChristmasContentStart,
        ProfileSettings.ChristmasContentEnd, profile => profile.
-        AddSection("Countdown Calendar").
-        AddSectionFromUrl(ProfileSettings.JulekalenderPath).
         AddSection("Wham Watchdog report").
         AddSectionFromUrl(ProfileSettings.WhamWatchdogPath)).
 
