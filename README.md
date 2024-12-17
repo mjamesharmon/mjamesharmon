@@ -26,7 +26,7 @@ Published 11 Months Ago
 ## Wham Watchdog report
 
 
-#### Oops, Something Else is On Top! 😢
-Seems like Last Christmas is taking a break from the charts. No worries, though! It's always winner in our hearts and there is no shame in giving a click and listen 🎄🎶
+#### Last Christmas is Back on Top!
+🎉 Last Christmas by Wham! is atop the charts again.  Celebrate with a dance and another listen.
 [![Click me](https://mjamesharmon.github.io/wham-watchdog/web/assets/img/last_christmas.jpeg "Last Christmas")]("https://youtu.be/E8gmARGvPlI?si=gt_S_mTrTcC_GmCa")
 
