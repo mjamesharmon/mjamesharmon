@@ -9,7 +9,7 @@ Published 5 Months Ago
 ---
 ### [Creating a Zelda Chat Assistant using Semantic Kernel](https://dev.to/mjamesharmon/creating-a-zelda-chat-assistant-using-semantic-kernel-47ii)
 
-Published 5 Months Ago
+Published 6 Months Ago
 
   💬 0 &nbsp;&nbsp; 👍🏻 0 &nbsp; &nbsp; ⏱️ 5
 
