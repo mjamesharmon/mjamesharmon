@@ -16,5 +16,7 @@ namespace Updater.Application
         public const string GitHubServicesPath =
             "https://mjamesharmon.github.io/";
 
+         public const string DevToProfile = "https://dev.to/mjamesharmon";
+
     }
 }

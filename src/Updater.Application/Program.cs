@@ -2,6 +2,8 @@
 using Updater.Core;
 using Updater.Core.Extensions;
 using Microsoft.Extensions.Configuration;
+using Updater.Core.SectionProviders;
+
 
 await Profile.Configure(options => options.
    UseHttp().
@@ -11,5 +13,6 @@ await Profile.Configure(options => options.
 
    // primary content
    AddImage(ProfileSettings.HeaderImage, ProfileSettings.HeaderImageAlt).
+   AddLatestFromDevTo(3,ProfileSettings.DevToProfile).
    PublishToFileAsync(args[0]);
 
